@@ -1,0 +1,20 @@
+{
+  "name": "odeToFood3",
+  "authors": [
+    "LukaszSmoczyk <lukaszsmoczyk@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "boostrap#v4.5.2"
+  }
+}
