@@ -9,6 +9,8 @@ namespace OdeToFood.Data
     {
         IEnumerable<Restaurant> GetRestaurantsByName(string name);
         Restaurant GetById(int id);
+        Restaurant Update(Restaurant updatedRestaurant);
+        int Commit();
     }
 
     public class InMemoryRestaurantData : IRestaurantData
@@ -19,11 +21,16 @@ namespace OdeToFood.Data
         {
             restaurants = new List<Restaurant>()
             {
-                new Restaurant {Id = 1, Name = "Scott's Pizza", Location = "Maryland", Cuisine = CusineType.Italian},
-                new Restaurant {Id = 2, Name = "Mahatma Gandi", Location = "Delaware", Cuisine = CusineType.Indian},
-                new Restaurant {Id = 3, Name = "Taco Bell", Location = "New York", Cuisine = CusineType.Mexican },
-                new Restaurant {Id = 4, Name = "Piregie's", Location = "Illnois", Cuisine = CusineType.None},
+                new Restaurant {Id = 1, Name = "Scott's Pizza", Location = "Maryland", Cuisine = CuisineType.Italian},
+                new Restaurant {Id = 2, Name = "Mahatma Gandi", Location = "Delaware", Cuisine = CuisineType.Indian},
+                new Restaurant {Id = 3, Name = "Taco Bell", Location = "New York", Cuisine = CuisineType.Mexican },
+                new Restaurant {Id = 4, Name = "Piregie's", Location = "Illnois", Cuisine = CuisineType.None},
             };
+        }
+
+        public int Commit()
+        {
+            return 0;
         }
 
         public Restaurant GetById(int id)
@@ -38,6 +45,18 @@ namespace OdeToFood.Data
                          orderby r.Name
                          select r;
             return result;
+        }
+
+        public Restaurant Update(Restaurant updatedRestaurant)
+        {
+            var restaurant = restaurants.SingleOrDefault(r => r.Id == updatedRestaurant.Id);
+            if(restaurant != null)
+            {
+                restaurant.Name = updatedRestaurant.Name;
+                restaurant.Location = updatedRestaurant.Location;
+                restaurant.Cuisine = updatedRestaurant.Cuisine;
+            }
+            return restaurant;
         }
     }
 }
