@@ -7,6 +7,9 @@ namespace OdeToFood.Core
         None,
         Mexican,
         Italian,
-        Indian
+        Indian,
+        Polish,
+        Ukrainian,
+        German
     }
 }

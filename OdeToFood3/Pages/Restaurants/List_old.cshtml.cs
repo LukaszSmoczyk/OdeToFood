@@ -17,22 +17,28 @@ namespace OdeToFood3.Pages.Restaurants
 
         public string Message { get; set; }
         public IEnumerable<Restaurant> Restaurants { get; set; }
+
         [BindProperty(SupportsGet = true)]
         public string SearchTerm { get; set; }
 
+        private readonly OdeToFood.Data.OdeToFoodDbContext _context;
 
+        public ListModel(OdeToFood.Data.OdeToFoodDbContext context)
+        {
+            _context = context;
+        }
 
-        public ListModel(IConfiguration config,
+/*        public ListModel(IConfiguration config,
                          IRestaurantData restaurantData)
         {
             this.config = config;
             this.restaurantData = restaurantData;
-        }
+        }*/
         public void OnGet()
         {
 
-            Message = config["Message"];
-            Restaurants = restaurantData.GetRestaurantsByName(SearchTerm);
+/*            Message = config["Message"];
+            Restaurants = restaurantData.GetRestaurantsByName(SearchTerm);*/
         }
     }
 }

@@ -1,9 +1,9 @@
-﻿@page 
-@model OdeToFood3.Pages.Restaurants.ListModel
-@{
-}
+﻿@page
 
-<h1>Restaurants</h1>
+@model ListModel
+@{
+    ViewData["Title"] = "Restaurants";
+}
 
 
 <form method="get">
@@ -24,7 +24,7 @@
     @foreach (var restaurant in Model.Restaurants)
     {
         <tr>
-            <td>@restaurant.Name</td>
+            <td>@restaurant.Id</td>
             <td>@restaurant.Location</td>
             <td>@restaurant.Cuisine</td>
             <td>
