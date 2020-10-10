@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{SearchTerm?}"
 @model ListModel
 @{
     ViewData["Title"] = "Restaurants";
@@ -20,10 +20,56 @@
     </div>
 </form>
 
-@foreach (var restaurant in Model.Restaurants)
-{
-    <partial name="_Summary" model="restaurant" />
-}
+<div class="table-responsive">
+    <table class="table table-bordered table-condensed table-striped table-hover sortable">
+        @if (Model.Restaurants.Count() == 0)
+        {
+            <tr>
+                <td colspan="10">No Record's found.</td>
+            </tr>
+        }
+        else
+        {
+            <thead>
+                <tr class="danger">
+                    <th data-defaultsign="AZ">Name</th>
+                    <th data-defaultsign="AZ">Location</th>
+                    <th data-defaultsign="AZ">Cuisine</th>
+                    <th data-defaultsign="AZ">Options</th>
+
+                </tr>
+            </thead>
+
+            foreach (var item in Model.Restaurants)
+            {
+    <tr>
+        <td>@item.Name</td>
+        <td>@item.Location</td>
+        <td>@item.Cuisine</td>
+
+        <td>
+            <a class="btn btn-lg"
+               asp-page="./Detail"
+               asp-route-restaurantId="@item.Id">
+                <i class="fa fa-search-plus"></i>
+            </a>
+
+            <a class="btn btn-lg"
+               asp-page="./Edit"
+               asp-route-restaurantId="@item.Id">
+                <i class="fa fa-edit"></i>
+            </a>
+            <a class="btn btn-lg"
+               asp-page="./Delete"
+               asp-route-restaurantId="@item.Id">
+                <i class="fa fa-trash"></i>
+            </a>
+        </td>
+    </tr>
+            }
+        }
+    </table>
+</div>
 
 <a asp-page="./Edit" class="btn btn-outline-primary">Add New</a>
 
