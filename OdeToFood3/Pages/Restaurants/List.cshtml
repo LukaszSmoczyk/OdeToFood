@@ -19,59 +19,35 @@
         </div>
     </div>
 </form>
-
 <div class="table-responsive">
     <table class="table table-bordered table-condensed table-striped table-hover sortable">
-        @if (Model.Restaurants.Count() == 0)
-        {
-            <tr>
-                <td colspan="10">No Record's found.</td>
+
+        <thead>
+            <tr class="danger">
+                <th data-defaultsign="AZ">Name</th>
+                <th data-defaultsign="AZ">Location</th>
+                <th data-defaultsign="AZ">Cuisine</th>
+                <th data-defaultsign="AZ">Options</th>
+
             </tr>
-        }
-        else
-        {
-            <thead>
-                <tr class="danger">
-                    <th data-defaultsign="AZ">Name</th>
-                    <th data-defaultsign="AZ">Location</th>
-                    <th data-defaultsign="AZ">Cuisine</th>
-                    <th data-defaultsign="AZ">Options</th>
+        </thead>
 
-                </tr>
-            </thead>
-
-            foreach (var item in Model.Restaurants)
+        <div class="row">
+            @foreach (var restaurant in Model.Restaurants)
             {
-    <tr>
-        <td>@item.Name</td>
-        <td>@item.Location</td>
-        <td>@item.Cuisine</td>
 
-        <td>
-            <a class="btn btn-lg"
-               asp-page="./Detail"
-               asp-route-restaurantId="@item.Id">
-                <i class="fa fa-search-plus"></i>
-            </a>
+                <partial name="_Summary" model="restaurant" />
 
-            <a class="btn btn-lg"
-               asp-page="./Edit"
-               asp-route-restaurantId="@item.Id">
-                <i class="fa fa-edit"></i>
-            </a>
-            <a class="btn btn-lg"
-               asp-page="./Delete"
-               asp-route-restaurantId="@item.Id">
-                <i class="fa fa-trash"></i>
-            </a>
-        </td>
-    </tr>
             }
-        }
-    </table>
+        </div>
+        </table>
 </div>
 
 <a asp-page="./Edit" class="btn btn-outline-primary">Add New</a>
+
+@section footer {
+    <div>@Model.Message</div>
+}
 
 
 

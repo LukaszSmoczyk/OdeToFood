@@ -14,8 +14,11 @@ namespace OdeToFood3.Pages.Restaurants
 {
     public class ListModel : PageModel
     {
+        private readonly IConfiguration config;
 
         private readonly OdeToFood.Data.OdeToFoodDbContext _context;
+
+        public string Message { get; set; }
 
         public IList<Restaurant> Restaurants { get; set; }
 
@@ -24,9 +27,10 @@ namespace OdeToFood3.Pages.Restaurants
 
 
 
-        public ListModel(OdeToFood.Data.OdeToFoodDbContext context)
+        public ListModel(OdeToFood.Data.OdeToFoodDbContext context, IConfiguration config)
         {
             _context = context;
+            this.config = config;
         }
 
         public async Task OnGetAsync()
@@ -38,6 +42,7 @@ namespace OdeToFood3.Pages.Restaurants
                 restaurants = restaurants.Where(s => s.Name.Contains(SearchTerm));
             }
             Restaurants = await restaurants.ToListAsync();
+            Message = config["Message"];
 
         }
     }
