@@ -51,6 +51,7 @@ namespace OdeToFood3
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseNodeModules();
 
             app.UseRouting();
             app.UseEndpoints(e =>
