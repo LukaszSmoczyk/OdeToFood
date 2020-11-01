@@ -17,6 +17,7 @@ namespace OdeToFood3.Pages.Restaurants
         private readonly IConfiguration config;
 
         private readonly OdeToFood.Data.OdeToFoodDbContext _context;
+        private readonly ILogger<ListModel> logger;
 
         public string Message { get; set; }
 
@@ -27,14 +28,18 @@ namespace OdeToFood3.Pages.Restaurants
 
 
 
-        public ListModel(OdeToFood.Data.OdeToFoodDbContext context, IConfiguration config)
+        public ListModel(OdeToFood.Data.OdeToFoodDbContext context, 
+                        IConfiguration config,
+                        ILogger<ListModel> logger)
         {
             _context = context;
             this.config = config;
+            this.logger = logger;
         }
 
         public async Task OnGetAsync()
         {
+            logger.LogError("Executing ListModel");
             var restaurants = from r in _context.Restaurants
                              select r;
             if (!string.IsNullOrEmpty(SearchTerm))

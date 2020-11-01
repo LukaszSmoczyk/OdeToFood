@@ -2,8 +2,11 @@
   "name": "odetofood3",
   "version": "1.0.0",
   "dependencies": {
-    "datatables.net-bs4": "^1.10.22"
-  },
-  "devDependencies": {},
-
+    "bootstrap": "4.5.2",
+    "datatables.net-bs": "1.10.19",
+    "jquery": "3.5.1",
+    "jquery-validation": "1.19.1",
+    "jquery-validation-unobtrusive": "3.2.11",
+    "@fortawesome/fontawesome-free": "5.14.0"
+  }
 }
