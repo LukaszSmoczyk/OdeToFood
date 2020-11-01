@@ -32,6 +32,7 @@ namespace OdeToFood3
 
 
             services.AddScoped<IRestaurantData, SqlRestaurantData>();
+            // services.AddScoped<IRestaurantData, InMemoryRestaurantData>();
             services.AddRazorPages();
             services.AddControllers();
         }
@@ -56,13 +57,15 @@ namespace OdeToFood3
             app.UseNodeModules();
 
             app.UseRouting();
+            app.UseAuthorization();
+
             app.UseEndpoints(e =>
             {
                 e.MapRazorPages();
                 e.MapControllers();
             });
 
-            app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
